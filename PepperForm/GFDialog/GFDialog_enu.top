@@ -1,0 +1,29 @@
+topic: ~GFDialog()
+language: enu
+
+dynamic:question
+dynamic:choices
+
+concept:(nextQuestion) ["And the question is!" "What's next?" "Let's see." "Let's go on."]
+concept:(checked) ["You can select one more or say next to go to the next question." "Say next or give another choice." "Say next or give another choice" "Say next or give another choice"]
+
+u:(in:onActivation) Hello. Let's start! ^nextProposal
+
+proposal: %nextQuestion ^call(GoogleForm.nextQuestion())
+    c1:(ss-checkbox) ^gotoReactivate(ss-checkbox)
+    c1:(["ss-text" "ss-paragraph-text"]) ^gotoReactivate(ss-text)
+    c1:(["ss-select" "ss-radio"]) ^gotoReactivate(ss-radio)
+    c1:(finished) ^gotoReactivate(end)
+
+proposal: %ss-text ~question
+    u:(_*) I see. Very interesting! ^call(GoogleForm.answer( $1 )) ^gotoReactivate(nextQuestion)
+
+proposal: %ss-radio ~question
+    u:(_~choices) Good choice! \pau=500\ I think. ^call(GoogleForm.answer( $1 )) ^gotoReactivate(nextQuestion)
+
+proposal: %ss-checkbox ~question
+    u:(_~choices) Ok. ^call(GoogleForm.addCheckbox( $1 )) You can select one more or say next to go to the next question.
+    u:(next) All right. ^call(GoogleForm.answerCheckbox())
+
+proposal: %end Oh! It's finished! Thank you for your time! $onStopped=1
+

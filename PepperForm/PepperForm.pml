@@ -4,8 +4,12 @@
     <BehaviorDescriptions>
         <BehaviorDescription name="behavior" src="main" xar="behavior.xar" />
     </BehaviorDescriptions>
-    <Dialogs />
+    <Dialogs>
+        <Dialog name="GFDialog" src="GFDialog/GFDialog.dlg" />
+    </Dialogs>
     <Resources />
-    <Topics />
+    <Topics>
+        <Topic name="GFDialog_enu" src="GFDialog/GFDialog_enu.top" topicName="GFDialog" language="en_US" />
+    </Topics>
     <IgnoredPaths />
 </Package>
