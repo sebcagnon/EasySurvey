@@ -13,9 +13,6 @@
   <behaviorContent path="main">
    <userRequestable/>
    <nature>interactive</nature>
-   <triggerSentences/>
-   <loadingResponses/>
-   <autonomous/>
    <permissions/>
   </behaviorContent>
  </contents>
@@ -23,4 +20,7 @@
   <naoqiRequirement minVersion="2.3"/>
   <robotRequirement model="JULIETTE_Y20"/>
  </requirements>
+ <services>
+  <service execStart="/usr/bin/python2 lib/GoogleFormService.py" autorun="false" name="GoogleForm"/>
+ </services>
 </package>
