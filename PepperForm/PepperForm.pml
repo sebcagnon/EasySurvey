@@ -55,11 +55,14 @@
         <File name="index" src="html/index.html" />
         <File name="pepperForm" src="html/javascript/pepperForm.js" />
         <File name="jquery-2.1.4.min" src="html/javascript/jquery-2.1.4.min.js" />
+        <File name="MG9KbUZFchDs94Tbv9U-pZBw1xU1rKptJj_0jans920" src="html/Maven_Pro/MavenPro.woff2" />
+        <File name="OFL" src="html/Maven_Pro/OFL.txt" />
     </Resources>
     <Topics>
         <Topic name="GFDialog_enu" src="GFDialog/GFDialog_enu.top" topicName="GFDialog" language="en_US" />
     </Topics>
     <IgnoredPaths>
+        <Path src="serve.py" />
         <Path src="html/css/.DS_Store" />
         <Path src="html/.DS_Store" />
         <Path src=".DS_Store" />

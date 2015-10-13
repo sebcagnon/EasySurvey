@@ -1,11 +1,20 @@
+@font-face {
+  font-family: 'Maven Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Maven Pro Regular'), local('MavenProRegular'), url(../Maven_Pro/MavenPro.woff2) format('woff2');
+}
+
+
 html {
 	background-color: white;
 	
 }
 
 body {
-	width: 1280px;
-	height: 800px;
+	height: 100vh;
+	margin: 0;
+	padding: 0;
 	background: linear-gradient(to bottom right, #0066FF, #00CCFF);
 	font-family: 'Maven Pro', sans-serif;
 	color: #FFFFFF;
@@ -13,6 +22,15 @@ body {
 
 .hidden {
 	display: none;
+}
+
+.unselectable {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: -moz-none;
+	-ms-user-select: none;
+	user
 }
 
 div {
