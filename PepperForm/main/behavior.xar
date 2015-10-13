@@ -61,6 +61,7 @@
             elif serviceManager.startService(serviceName) == True:
                 time.sleep(0.3)
                 if serviceManager.isServiceRunning(serviceName):
+                    self.session().waitForService(serviceName)
                     self.onStopped()
             else:
                 raise RuntimeError('Could not find or start the service')
@@ -121,7 +122,7 @@
                         <Link inputowner="1" indexofinput="2" outputowner="3" indexofoutput="6" />
                         <Link inputowner="3" indexofinput="3" outputowner="1" indexofoutput="4" />
                         <Link inputowner="0" indexofinput="4" outputowner="3" indexofoutput="5" />
-                        <Link inputowner="3" indexofinput="2" outputowner="0" indexofoutput="2" />
+                        <Link inputowner="2" indexofinput="2" outputowner="0" indexofoutput="2" />
                     </Diagram>
                 </BehaviorKeyframe>
             </BehaviorLayer>

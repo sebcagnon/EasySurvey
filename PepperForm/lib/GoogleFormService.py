@@ -17,11 +17,11 @@ class GFService(object):
 		self.session = session
 		self.url = ""
 		self.languageDict = None
+		self.questionLoaded = qi.Signal("(sss[s])")
 
 	@qi.bind(qi.Void, paramsType=(qi.String,))
 	def loadForm(self, url):
 		"""Initialize a new GFParser object with url"""
-		print "loading form"
 		self.url = url
 		self.form = PyGoogleForm.GFParser(url)
 		self.questions = self.form.getQuestionIDs()
@@ -41,19 +41,23 @@ class GFService(object):
 	@qi.bind(qi.String)
 	def nextQuestion(self):
 		"""Loads next question and sets up dynamic concepts. Returns question type or 'finished'"""
-		print "nextQuestion"
 		self.questionIndex += 1
 		if self.questionIndex >= len(self.questions):
+			# fire signal!
+			self.questionLoaded("", "finished", "", [])
 			return "finished"
 		self.questionInfo = self.form.getQuestionInfo(self.questions[self.questionIndex])
 		if self.questionInfo[1] == "ss-checkbox":
 			self.checked =[]
 		# Dialog settings
-		print "nextQuestion 2"
 		self["ALMemory"].raiseEvent(self.MKEY_QUESTION, self.questionInfo[2])
 		if isinstance(self.questionInfo[3], list):
 			self["ALDialog"].setConcept(self.CONCEPT_CHOICES, self.getLanguageNU(), self.questionInfo[3], _async=True)
-		print "nextQuestion 3"
+		# fire signal (for tablet)
+		signalInfo = self.questionInfo[:]
+		if self.questionInfo[1] in ["ss-text", "ss-paragraph-text"]:
+			signalInfo[3] = [signalInfo[3]]
+		self.questionLoaded(*signalInfo)
 		# return question type
 		return self.questionInfo[1]
 

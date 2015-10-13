@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<package version="0.0.1" uuid="pepperform">
+<package uuid="pepperform" version="0.0.1">
  <names>
   <name lang="en_US">PepperForm</name>
  </names>
@@ -21,6 +21,6 @@
   <robotRequirement model="JULIETTE_Y20"/>
  </requirements>
  <services>
-  <service execStart="/usr/bin/python2 lib/GoogleFormService.py" autorun="false" name="GoogleForm"/>
+  <service autorun="false" name="GoogleForm" execStart="/usr/bin/python lib/GoogleFormService.py"/>
  </services>
 </package>
