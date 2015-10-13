@@ -54,6 +54,7 @@
         <File name="pepperForm" src="html/css/pepperForm.css" />
         <File name="index" src="html/index.html" />
         <File name="pepperForm" src="html/javascript/pepperForm.js" />
+        <File name="jquery-2.1.4.min" src="html/javascript/jquery-2.1.4.min.js" />
     </Resources>
     <Topics>
         <Topic name="GFDialog_enu" src="GFDialog/GFDialog_enu.top" topicName="GFDialog" language="en_US" />

@@ -17,6 +17,7 @@ class GFService(object):
 		self.session = session
 		self.url = ""
 		self.languageDict = None
+		self.formLoaded = qi.Signal("(ss)")
 		self.questionLoaded = qi.Signal("(sss[s])")
 
 	@qi.bind(qi.Void, paramsType=(qi.String,))
@@ -26,6 +27,8 @@ class GFService(object):
 		self.form = PyGoogleForm.GFParser(url)
 		self.questions = self.form.getQuestionIDs()
 		self.questionIndex = -1
+		formInfo = self.getFormInfos()
+		self.formLoaded(*formInfo)
 
 	@qi.bind(qi.Void)
 	def submit(self):
@@ -37,6 +40,12 @@ class GFService(object):
 	def getFormURL(self):
 		"""Return the url of the current form, or empty string is no form is loaded"""
 		return self.url
+
+	@qi.bind(qi.List(qi.String))
+	def getFormInfos(self):
+		"""Returns info [FormTitle, FormDescription]"""
+		# converting to normal string as qi doesn't like list of unicodes
+		return [str(s) for s in self.form.getFormInfos()]
 
 	@qi.bind(qi.String)
 	def nextQuestion(self):

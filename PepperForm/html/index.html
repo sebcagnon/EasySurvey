@@ -7,25 +7,26 @@
 	<link href='https://fonts.googleapis.com/css?family=Maven+Pro' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="css/pepperForm.css">
 	<script src="/libs/qimessaging/2/qimessaging.js"></script>
+	<script src="javascript/jquery-2.1.4.min.js"></script>
 	<script type="text/javascript" src="javascript/pepperForm.js"></script>
 </head>
 <body>
 
-	<div id="openFrame" class="hidden">
+	<div id="openFrame" class="mainFrame">
 		<h1 id="pepperSurveyStart">Pepper Form</h1>
 		<h1 id="formTitle">Test Survey</h1>
 		<p id="formDesc">This is a test survey</p>
 	</div>
 
-	<div id="questionFrame" class="hidden">
+	<div id="questionFrame" class="mainFrame hidden">
 		<h1 id="question">Answer this rather very long question</h1>
 		<div id="choices">
-			<div id="text" class="hidden"><textarea rows="4" cols="35" placeholder="Please tell me your answer"></textarea></div>
-			<div id="2answers" class="hidden">
+			<div id="text" class="answerFrame hidden"><textarea rows="4" cols="35" placeholder="Please tell me your answer"></textarea></div>
+			<div id="2answers" class="answerFrame hidden">
 				<input class="btn twobtn" id="btn21" value="Option 1">
 				<input class="btn twobtn" id="btn22" value="Option 2">
 			</div>
-			<div id="4answers" class="hidden">
+			<div id="4answers" class="answerFrame hidden">
 				<input class="btn fourbtn" id="btn41" value="Option 1">
 				<input class="btn fourbtn" id="btn42" value="Option 2">
 				<br>
@@ -35,7 +36,7 @@
 		</div>
 	</div>
 
-	<div id="thankYouFrame" class="hidden">
+	<div id="thankYouFrame" class="mainFrame hidden">
 		<h1 id="pepperSurveyEnd">Pepper Survey</h1>
 		<br>
 		<h1 id="thankYou">Thank You!</h1>
