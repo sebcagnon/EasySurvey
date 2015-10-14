@@ -62,7 +62,6 @@
         <Topic name="GFDialog_enu" src="GFDialog/GFDialog_enu.top" topicName="GFDialog" language="en_US" />
     </Topics>
     <IgnoredPaths>
-        <Path src="serve.py" />
         <Path src="html/css/.DS_Store" />
         <Path src="html/.DS_Store" />
         <Path src=".DS_Store" />
