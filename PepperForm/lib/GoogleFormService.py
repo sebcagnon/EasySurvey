@@ -73,7 +73,6 @@ class GFService(object):
 	@qi.bind(qi.Void, paramsType=(qi.String,))
 	def answer(self, answer):
 		"""answers the question"""
-		print "answer: ", answer
 		self.form.answerQuestion(self.questionInfo[0], answer)
 
 	@qi.bind(qi.Void, paramsType=(qi.String,))
@@ -84,9 +83,7 @@ class GFService(object):
 	@qi.bind(qi.Void)
 	def answerCheckbox(self):
 		"""Answers the checkbox question with list of checks"""
-		print "here"
 		self.form.answerQuestion(self.questionInfo[0], self.checked)
-		print "there"
 
 	@qi.nobind
 	def __getitem__(self, serviceName):
