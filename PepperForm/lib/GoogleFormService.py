@@ -19,6 +19,7 @@ class GFService(object):
 		self.languageDict = None
 		self.formLoaded = qi.Signal("(ss)")
 		self.questionLoaded = qi.Signal("(sss[s])")
+		self.answerGiven = qi.Signal("(sss)")
 
 	@qi.bind(qi.Void, paramsType=(qi.String,))
 	def loadForm(self, url):
@@ -74,11 +75,13 @@ class GFService(object):
 	def answer(self, answer):
 		"""answers the question"""
 		self.form.answerQuestion(self.questionInfo[0], answer)
+		self.answerGiven(self.questionInfo[0], self.questionInfo[1], answer)
 
 	@qi.bind(qi.Void, paramsType=(qi.String,))
 	def addCheckbox(self, answer):
 		"""Adds answer to the list of checked questions"""
 		self.checked.append(answer)
+		self.answerGiven(self.questionInfo[0], self.questionInfo[1], answer)
 
 	@qi.bind(qi.Void)
 	def answerCheckbox(self):

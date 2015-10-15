@@ -57,6 +57,7 @@
         <File name="jquery-2.1.4.min" src="html/javascript/jquery-2.1.4.min.js" />
         <File name="MG9KbUZFchDs94Tbv9U-pZBw1xU1rKptJj_0jans920" src="html/Maven_Pro/MavenPro.woff2" />
         <File name="OFL" src="html/Maven_Pro/OFL.txt" />
+        <File name="keyboard53" src="html/images/keyboard53.png" />
     </Resources>
     <Topics>
         <Topic name="GFDialog_enu" src="GFDialog/GFDialog_enu.top" topicName="GFDialog" language="en_US" />

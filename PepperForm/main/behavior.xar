@@ -15,7 +15,7 @@
             <BehaviorLayer name="behavior_layer1">
                 <BehaviorKeyframe name="keyframe1" index="1">
                     <Diagram>
-                        <Box name="GFDialog" id="1" localization="8" tooltip="" x="281" y="201">
+                        <Box name="GFDialog" id="1" localization="8" tooltip="" x="414" y="181">
                             <dialogFile>../GFDialog/GFDialog.dlg</dialogFile>
                             <bitmap>media/images/box/box-dialog.png</bitmap>
                             <script language="4">
@@ -28,7 +28,7 @@
                             <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
                             <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" />
                         </Box>
-                        <Box name="start service" id="2" localization="8" tooltip="" x="103" y="54">
+                        <Box name="start service" id="2" localization="8" tooltip="" x="79" y="20">
                             <bitmap>media/images/box/box-python-script.png</bitmap>
                             <script language="4">
                                 <content>
@@ -79,7 +79,7 @@
                             <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" />
                             <Parameter name="service name" inherits_from_parent="0" content_type="3" value="GoogleForm" default_value="" custom_choice="0" tooltip="" id="5" />
                         </Box>
-                        <Box name="GoogleForm" id="3" localization="8" tooltip="Loads and Submit forms" x="279" y="64">
+                        <Box name="GoogleForm" id="3" localization="8" tooltip="Loads and Submit forms" x="412" y="44">
                             <bitmap>../../../../../../../../Users/SBR4400773/Pictures/googleforms.png</bitmap>
                             <script language="4">
                                 <content>
@@ -118,11 +118,42 @@
                             <Output name="onFormLoaded" type="1" type_size="1" nature="2" inner="0" tooltip="triggered when the form was loaded and is ready to use" id="6" />
                             <Parameter name="url" inherits_from_parent="0" content_type="3" value="https://docs.google.com/forms/d/1jzDkEha066GwSCcSrCg1yaJJLpJAk0_aIFwf6GQgmmU/viewform" default_value="" custom_choice="0" tooltip="the url of the form to use" id="7" />
                         </Box>
-                        <Link inputowner="3" indexofinput="2" outputowner="2" indexofoutput="4" />
+                        <Box name="Load Tablet" id="4" localization="8" tooltip="Loads the tablet application" x="246" y="33">
+                            <bitmap>media/images/box/box-python-script.png</bitmap>
+                            <script language="4">
+                                <content>
+                                    <![CDATA[class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self)
+
+    def onLoad(self):
+        #put initialization code here
+        pass
+
+    def onUnload(self):
+        #put clean-up code here
+        pass
+
+    def onInput_onStart(self):
+        self.session().service("ALTabletService").loadApplication(self.packageUid())
+        self.onStopped()
+
+    def onInput_onStop(self):
+        self.onUnload() #it is recommended to reuse the clean-up as the box is stopped
+        self.onStopped() #activate the output of the box]]>
+</content>
+                            </script>
+                            <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                            <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+                            <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
+                            <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" />
+                        </Box>
                         <Link inputowner="1" indexofinput="2" outputowner="3" indexofoutput="6" />
                         <Link inputowner="3" indexofinput="3" outputowner="1" indexofoutput="4" />
                         <Link inputowner="0" indexofinput="4" outputowner="3" indexofoutput="5" />
                         <Link inputowner="2" indexofinput="2" outputowner="0" indexofoutput="2" />
+                        <Link inputowner="4" indexofinput="2" outputowner="2" indexofoutput="4" />
+                        <Link inputowner="3" indexofinput="2" outputowner="4" indexofoutput="4" />
                     </Diagram>
                 </BehaviorKeyframe>
             </BehaviorLayer>

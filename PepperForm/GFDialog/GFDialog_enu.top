@@ -7,7 +7,7 @@ dynamic:choices
 concept:(nextQuestion) ["And the question is!" "What's next?" "Let's see." "Let's go on."]
 concept:(checked) ["You can select one more or say next to go to the next question." "Say next or give another choice." "Say next or give another choice" "Say next or give another choice"]
 
-u:(in:onActivation) Hello. Let's start! ^gotoReactivate(nextQuestion)
+u:(in:onActivation) Welcome to Pepper Form. Let's start! ^gotoReactivate(nextQuestion)
 
 proposal: %nextQuestion ~nextQuestion ^call(GoogleForm.nextQuestion())
     c1:(ss-checkbox) ^gotoReactivate(ss-checkbox)
