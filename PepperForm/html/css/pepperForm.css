@@ -72,14 +72,14 @@ p {
 #questionFrame > h1 {
 	margin-top: 10px;
 	overflow:hidden;
-	line-height: 18vh; 
-	max-height: 39vh;
-	height: 39vh;
+	line-height: 16vh; 
+	max-height: 35vh;
+	height: 35vh;
 }
 
 #choices {
 	padding-top: 9vh;
-	height: 40vh;
+	height: 40	vh;
 	margin-left: 10%;
 }
 
@@ -92,7 +92,7 @@ p {
 	height: auto;
 }
 
-#text {
+#text, #submitText {
 	margin-top: -10vh;
 }
 
