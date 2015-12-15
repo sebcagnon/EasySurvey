@@ -3,6 +3,7 @@
     <Manifest src="manifest.xml" />
     <BehaviorDescriptions>
         <BehaviorDescription name="behavior" src="main" xar="behavior.xar" />
+        <BehaviorDescription name="behavior" src="anim1" xar="behavior.xar" />
     </BehaviorDescriptions>
     <Dialogs>
         <Dialog name="GFDialog" src="GFDialog/GFDialog.dlg" />
@@ -58,13 +59,18 @@
         <File name="MG9KbUZFchDs94Tbv9U-pZBw1xU1rKptJj_0jans920" src="html/Maven_Pro/MavenPro.woff2" />
         <File name="OFL" src="html/Maven_Pro/OFL.txt" />
         <File name="keyboard53" src="html/images/keyboard53.png" />
+        <File name="icon" src="icon.png" />
+        <File name="GoogleFormService" src="lib/GoogleFormService.pyc" />
     </Resources>
     <Topics>
         <Topic name="GFDialog_enu" src="GFDialog/GFDialog_enu.top" topicName="GFDialog" language="en_US" />
+        <Topic name="GFDialog_jpj" src="GFDialog/GFDialog_jpj.top" topicName="GFDialog" language="ja_JP" />
     </Topics>
     <IgnoredPaths>
+        <Path src=".DS_Store" />
+        <Path src="lib/.DS_Store" />
         <Path src="html/css/.DS_Store" />
         <Path src="html/.DS_Store" />
-        <Path src=".DS_Store" />
+        <Path src=".metadata" />
     </IgnoredPaths>
 </Package>

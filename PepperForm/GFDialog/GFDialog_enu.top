@@ -1,7 +1,6 @@
 topic: ~GFDialog()
 language: enu
 
-dynamic:question
 dynamic:choices
 
 concept:(nextQuestion) ["And the question is!" "What's next?" "Let's see." "Let's go on."]
@@ -9,7 +8,7 @@ concept:(checked) ["You can select one more or say next to go to the next questi
 
 u:(in:onActivation) Welcome to Pepper Form. Let's start! ^gotoReactivate(nextQuestion)
 
-proposal: %nextQuestion ~nextQuestion ^call(GoogleForm.nextQuestion())
+proposal: %nextQuestion ~nextQuestion ^break ^call(GoogleForm.nextQuestion())
     c1:(ss-checkbox) ^gotoReactivate(ss-checkbox)
     c1:(["ss-text" "ss-paragraph-text"]) ^gotoReactivate(ss-text)
     c1:(["ss-select" "ss-radio"]) ^gotoReactivate(ss-radio)

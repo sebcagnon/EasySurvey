@@ -13,7 +13,6 @@ html {
 
 body {
 	height: 100vh;
-	margin: 0;
 	padding: 1px;
 	margin: -1px;
 	background: linear-gradient(to bottom right, #0066FF, #00CCFF);
@@ -36,6 +35,7 @@ body {
 
 #page {
 	height: 100vh;
+	overflow: hidden;
 }
 
 div {
@@ -52,8 +52,8 @@ div.mainFrame {
 
 h1 {
 	font-size: 18vh;
-	height: 30%;
-	margin: 5vh auto;
+	height: 25%;
+	margin: 4vh auto;
 }
 
 p {
@@ -79,7 +79,7 @@ p {
 
 #choices {
 	padding-top: 9vh;
-	height: 45vh;
+	height: 40vh;
 	margin-left: 10%;
 }
 
@@ -92,9 +92,13 @@ p {
 	height: auto;
 }
 
+#text {
+	margin-top: -10vh;
+}
+
 textarea {
 	resize: none;
-	font-size: 10vh;
+	font-size: 8vh;
 	height: 40vh;
 	width: 95%;
 	margin-left: auto;

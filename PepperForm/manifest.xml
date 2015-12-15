@@ -1,17 +1,40 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<package version="0.0.1" uuid="pepperform">
+<package uuid="pepperform" version="0.0.1">
  <names>
-  <name lang="en_US">PepperForm</name>
+  <name lang="en_US">Pepper Form</name>
+  <name lang="ja_JP">ペッパー　アンケート</name>
  </names>
+ <descriptions>
+  <description lang="en_US">Allows Pepper to survey customers by using online Google Forms</description>
+  <description lang="ja_JP">Google Formのアンケートを使うようになります！</description>
+ </descriptions>
  <supportedLanguages>
   <language>en_US</language>
+  <language>ja_JP</language>
  </supportedLanguages>
  <descriptionLanguages>
   <language>en_US</language>
+  <language>ja_JP</language>
  </descriptionLanguages>
  <contents>
   <behaviorContent path="main">
    <userRequestable/>
+   <nature>interactive</nature>
+   <names>
+    <name lang="en_US">pepper form</name>
+    <name lang="ja_JP">ペッパー　アンケート</name>
+   </names>
+   <descriptions>
+    <description lang="en_US">Allows Pepper to survey customers by using online Google Forms</description>
+    <description lang="ja_JP">Google Formのアンケートを使うようになります！</description>
+   </descriptions>
+   <triggerSentences>
+    <sentence lang="en_US">pepper form</sentence>
+    <sentence lang="ja_JP">ペッパーアンケート</sentence>
+   </triggerSentences>
+   <permissions/>
+  </behaviorContent>
+  <behaviorContent path="anim1">
    <nature>interactive</nature>
    <permissions/>
   </behaviorContent>
@@ -21,6 +44,6 @@
   <robotRequirement model="JULIETTE_Y20"/>
  </requirements>
  <services>
-  <service autorun="false" name="GoogleForm" execStart="/usr/bin/python lib/GoogleFormService.py"/>
+  <service execStart="/usr/bin/python lib/GoogleFormService.py" autorun="false" name="GoogleForm"/>
  </services>
 </package>

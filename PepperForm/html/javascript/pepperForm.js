@@ -25,6 +25,7 @@ try {
 			});
 			gf.formLoaded.connect(onNewForm).then(function (link) {
 				newFormLink = link;
+				raiseEvent("PepperForm/TabletReady");
 			});
 			gf.answerGiven.connect(onAnswered).then(function (link) {
 				answerGivenLink = link;
@@ -35,16 +36,24 @@ try {
 		});
 	}, function (error) {
 		console.log(error);
-	}, "localhost:8080");
+	});
 } catch (err) {
 	console.log("Error when initializing QiSession: " + err.message);
 }
+
+$(function () {
+	$("#next").click(userClick);
+	$("#submitText").click(function (e) {
+		forceInput($("textarea").val());
+	});
+	$("textarea").keyup(textAreaCallback);
+});
 
 var onNewQuestion = function (id, type, question, choices) {
 	console.log("New question: " + type);
 	$(".mainFrame").addClass("hidden");
 	$(".answerFrame").addClass("hidden");
-	$("#next").addClass("hidden");
+	$(".arrow").addClass("hidden");
 	if (type=="finished") {
 		showThankYouFrame();
 		return;
@@ -53,8 +62,9 @@ var onNewQuestion = function (id, type, question, choices) {
 	}
 	$("#question").text(question);
 	if (type == "ss-text" || type == "ss-paragraph-text") {
-		$("#text").attr("placeholder", choices[0]);
+		$("#submitText").removeClass("hidden");
 		$("#text").removeClass("hidden");
+		$("textarea").val("").attr("placeholder", "Please tell me your answer");
 	} else if (choices.length < 3) {
 		$("#2answers").empty();
 		for (var i = 0; i < choices.length; i++) {
@@ -110,6 +120,13 @@ var showThankYouFrame = function () {
 var userClick = function (e) {
 	console.log("User click: " + e.target.value);
 	forceInput(e.target.value);
+}
+
+var textAreaCallback = function (e) {
+	$("textarea").attr("placeholder", "");
+	if ((e.keyCode || e.which) == 13) {
+		forceInput($("textarea").val());
+	}
 }
 
 var raiseEvent = function (eventName, data) {

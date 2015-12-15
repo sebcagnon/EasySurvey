@@ -10,7 +10,8 @@
         <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
         <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
         <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
-        <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" />
+        <Input name="PepperForm/TabletReady" type="0" type_size="1" nature="4" stm_value_name="PepperForm/TabletReady" inner="1" tooltip="PepperForm/TabletReady desc" id="4" />
+        <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="5" />
         <Timeline enable="0">
             <BehaviorLayer name="behavior_layer1">
                 <BehaviorKeyframe name="keyframe1" index="1">
@@ -118,7 +119,7 @@
                             <Output name="onFormLoaded" type="1" type_size="1" nature="2" inner="0" tooltip="triggered when the form was loaded and is ready to use" id="6" />
                             <Parameter name="url" inherits_from_parent="0" content_type="3" value="https://docs.google.com/forms/d/1jzDkEha066GwSCcSrCg1yaJJLpJAk0_aIFwf6GQgmmU/viewform" default_value="" custom_choice="0" tooltip="the url of the form to use" id="7" />
                         </Box>
-                        <Box name="Load Tablet" id="4" localization="8" tooltip="Loads the tablet application" x="246" y="33">
+                        <Box name="Load Tablet" id="4" localization="8" tooltip="Loads the tablet application" x="230" y="26">
                             <bitmap>media/images/box/box-python-script.png</bitmap>
                             <script language="4">
                                 <content>
@@ -135,7 +136,12 @@
         pass
 
     def onInput_onStart(self):
-        self.session().service("ALTabletService").loadApplication(self.packageUid())
+        try:
+            self.session().service("ALTabletService").loadApplication(self.packageUid())
+            self.session().service("ALTabletService").showWebview()
+        except RuntimeError, e:
+            self.logger.warning("Could not find ALTablet Service")
+            self.onNoTablet()
         self.onStopped()
 
     def onInput_onStop(self):
@@ -147,13 +153,15 @@
                             <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
                             <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
                             <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" />
+                            <Output name="onNoTablet" type="1" type_size="1" nature="1" inner="0" tooltip="called when ALTabletService is not available" id="5" />
                         </Box>
                         <Link inputowner="1" indexofinput="2" outputowner="3" indexofoutput="6" />
                         <Link inputowner="3" indexofinput="3" outputowner="1" indexofoutput="4" />
-                        <Link inputowner="0" indexofinput="4" outputowner="3" indexofoutput="5" />
+                        <Link inputowner="0" indexofinput="5" outputowner="3" indexofoutput="5" />
                         <Link inputowner="2" indexofinput="2" outputowner="0" indexofoutput="2" />
                         <Link inputowner="4" indexofinput="2" outputowner="2" indexofoutput="4" />
-                        <Link inputowner="3" indexofinput="2" outputowner="4" indexofoutput="4" />
+                        <Link inputowner="3" indexofinput="2" outputowner="0" indexofoutput="4" />
+                        <Link inputowner="3" indexofinput="2" outputowner="4" indexofoutput="5" />
                     </Diagram>
                 </BehaviorKeyframe>
             </BehaviorLayer>

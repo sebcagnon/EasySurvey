@@ -1,0 +1,28 @@
+topic: ~GFDialog()
+language: jpj
+
+dynamic:choices
+
+concept:(nextQuestion) ["次の質問は！" "次は?" "それで、"]
+concept:(checked) ["もう一つの選択するか、次の質問に行くように、\pau=200\ つぎ \pau=200\ を言ってください。" "次 \pau=200\ 言うか、別の選択肢を与えます。" "次 \pau=200\ 言うか、別の選択肢を与えます。" "S次 \pau=200\ 言うか、別の選択肢を与えます。"]
+
+u:(in:onActivation) ペッパーアンケートへようこそ！始まりましょう！ ^gotoReactivate(nextQuestion)
+
+proposal: %nextQuestion ~nextQuestion ^break ^call(GoogleForm.nextQuestion())
+    c1:(ss-checkbox) ^gotoReactivate(ss-checkbox)
+    c1:(["ss-text" "ss-paragraph-text"]) ^gotoReactivate(ss-text)
+    c1:(["ss-select" "ss-radio"]) ^gotoReactivate(ss-radio)
+    c1:(finished) ^gotoReactivate(end)
+
+proposal: %ss-text $GoogleForm/Question
+    u1:(_*) そっか、面白いですね。 ^call(GoogleForm.answer( $1 )) ^gotoReactivate(nextQuestion)
+
+proposal: %ss-radio $GoogleForm/Question
+    u1:(_~choices) いい選択だと思います！ ^gotoReactivate(nextQuestion)
+
+proposal: %ss-checkbox $GoogleForm/Question
+    u1:(_~choices) はい。 ^call(GoogleForm.addCheckbox( $1 )) ~checked ^stayInScope
+    u1:(next) わかりました！ ^call(GoogleForm.answerCheckbox()) ^gotoReactivate(nextQuestion)
+
+proposal: %end あら！終わりました！アンケートを完了していただきありがとうございます！ $onStopped=1
+

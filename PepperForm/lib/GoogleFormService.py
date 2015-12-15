@@ -46,7 +46,7 @@ class GFService(object):
 	def getFormInfos(self):
 		"""Returns info [FormTitle, FormDescription]"""
 		# converting to normal string as qi doesn't like list of unicodes
-		return [str(s) for s in self.form.getFormInfos()]
+		return [s.encode("utf-8") for s in self.form.getFormInfos()]
 
 	@qi.bind(qi.String)
 	def nextQuestion(self):
@@ -60,9 +60,11 @@ class GFService(object):
 		if self.questionInfo[1] == "ss-checkbox":
 			self.checked =[]
 		# Dialog settings
-		self["ALMemory"].raiseEvent(self.MKEY_QUESTION, self.questionInfo[2])
+		self["ALMemory"].raiseEvent(self.MKEY_QUESTION, self.questionInfo[2].encode("utf-8"))
 		if isinstance(self.questionInfo[3], list):
-			self["ALDialog"].setConcept(self.CONCEPT_CHOICES, self.getLanguageNU(), self.questionInfo[3], _async=True)
+			choices = [s.encode("utf-8") for s in self.questionInfo[3]]
+			self.questionInfo[3] = choices
+			self["ALDialog"].setConcept(self.CONCEPT_CHOICES, self.getLanguageNU(), choices, _async=True)
 		# fire signal (for tablet)
 		signalInfo = self.questionInfo[:]
 		if self.questionInfo[1] in ["ss-text", "ss-paragraph-text"]:
